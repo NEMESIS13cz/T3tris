@@ -10,27 +10,26 @@ import org.lwjgl.util.glu.GLU;
 
 import com.redstoner.nemes.t3tris.gfx.FontManager;
 import com.redstoner.nemes.t3tris.gfx.TextureManager;
-import com.redstoner.nemes.t3tris.gfx.Window;
 import com.redstoner.nemes.t3tris.util.GameState;
 import com.redstoner.nemes.t3tris.util.Options;
+import com.redstoner.nemes.t3tris.util.Stats;
+import com.redstoner.nemes.t3tris.world.Grid;
 
 public class Render extends Thread {
 
 	private T3tris instance;
 	private int frames;
-	private Window window;
+	private Grid grid;
 	
 	public Render(T3tris inst) {
 		instance = inst;
 	}
 	
 	public void createWindow() {
-		window = new Window();
 		try {
 			Display.setDisplayMode(new DisplayMode(Options.startWidth, Options.startHeight));
 			Display.setTitle(Options.name);
 			Display.setResizable(true);
-			Display.setParent(window);
 			Display.create();
 			Keyboard.create();
 			Mouse.create();
@@ -52,8 +51,8 @@ public class Render extends Thread {
 		 GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		 GL11.glEnable(GL11.GL_ALPHA_TEST);
 		 GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_NICEST);
-		 //GL11.glEnable(GL11.GL_CULL_FACE);
-		 //GL11.glCullFace(GL11.GL_BACK);
+		 GL11.glEnable(GL11.GL_CULL_FACE);
+		 GL11.glCullFace(GL11.GL_BACK);
 	}
 	
 	public void reInitializeOpenGL() {
@@ -70,7 +69,6 @@ public class Render extends Thread {
 		Mouse.destroy();
 		TextureManager.deleteAllTextures();
 		Display.destroy();
-		window.cleanUp();
 		System.gc();
 		try {
 			sleep(100);
@@ -85,6 +83,8 @@ public class Render extends Thread {
 		long next_frame = System.currentTimeMillis();
 		long frame_time = 1000 / Options.framerateLimit;
 		GameState state;
+		long next_second = System.currentTimeMillis();
+		long second_time = 1000;
 		
 		createWindow();
 		initializeOpenGL();
@@ -94,6 +94,8 @@ public class Render extends Thread {
 		FontManager.loadFont(true, 24, 0, "courier", "Courier New");
 		
 		instance.setCurrentGameState(GameState.MENU);
+		
+		grid = instance.tick.getGrid();
 		
 		try {
 			while ((state = instance.getCurrentGameState()) != GameState.CLOSING) {
@@ -119,6 +121,11 @@ public class Render extends Thread {
 						instance.setCurrentGameState(GameState.CLOSING);
 					}
 				}
+				if (next_second < System.currentTimeMillis()) {
+					next_second += second_time;
+					
+					Display.setTitle(Options.name + " | TPS: " + Stats.getTPS() + " | FPS: " + Stats.getFPS() + " | Uptime: " + Stats.getUptime());
+				}
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -136,8 +143,6 @@ public class Render extends Thread {
 	public void renderMenu() {
 		int w = Display.getWidth();
 		int h = Display.getHeight();
-		int mouseX = Mouse.getX();
-		int mouseY = h - Mouse.getY();
 		
 		start2D(w, h);
 		disableTextures();
@@ -145,66 +150,40 @@ public class Render extends Thread {
 		GL11.glBegin(GL11.GL_QUADS);
 		
 		GL11.glColor4f(0, 0, 0, 1);
-		GL11.glVertex2f(0, 40);
-		GL11.glColor4f(0, 0.8f, 0, 1);
-		GL11.glVertex2f(w, 40);
-		GL11.glColor4f(0, 0, 0.8f, 1);
-		GL11.glVertex2f(w, h);
-		GL11.glColor4f(0.8f, 0, 0, 1);
 		GL11.glVertex2f(0, h);
-		
-		GL11.glEnd();
-		
-		GL11.glBegin(GL11.GL_QUADS);
-
-		GL11.glColor4f(0.2f, 0.2f, 0.2f, 1);
-		GL11.glVertex2f(0, 0);
-		GL11.glColor4f(1, 1, 1, 1);
+		GL11.glColor4f(0, 0.8f, 0, 1);
+		GL11.glVertex2f(w, h);
+		GL11.glColor4f(0, 0, 0.8f, 1);
 		GL11.glVertex2f(w, 0);
-		GL11.glColor4f(1, 1, 1, 1);
-		GL11.glVertex2f(w, 40);
-		GL11.glColor4f(0.2f, 0.2f, 0.2f, 1);
-		GL11.glVertex2f(0, 40);
-		
-		GL11.glEnd();
-		
-		GL11.glBegin(GL11.GL_QUADS);
-		
-		GL11.glColor4f(0.8f, 0.8f, 0.8f, 0.4f);
+		GL11.glColor4f(0.8f, 0, 0, 1);
 		GL11.glVertex2f(0, 0);
-		GL11.glVertex2f(w - 40, 0);
-		GL11.glVertex2f(w - 40, 40);
-		GL11.glVertex2f(0, 40);
-
+		
 		GL11.glEnd();
 		
 		enableTextures();
-		TextureManager.bindTexture("cross");
-		GL11.glBegin(GL11.GL_QUADS);
-
-		if (mouseX > w - 40 && mouseY < 40) {
-			GL11.glColor4f(1.0f, 0.0f, 0.0f, 0.7f);
-		}
-		GL11.glTexCoord2f(0, 0);
-		GL11.glVertex2f(w - 40, 0);
-		GL11.glTexCoord2f(1, 0);
-		GL11.glVertex2f(w, 0);
-		GL11.glTexCoord2f(1, 1);
-		GL11.glVertex2f(w, 40);
-		GL11.glTexCoord2f(0, 1);
-		GL11.glVertex2f(w - 40, 40);
-		
-		GL11.glEnd();
 		
 		instance.currMenu.render(w, h);
 		
 		end2D();
-		
-		window.checkMouse(w, h, mouseX, mouseY, this);
 	}
 	
 	public void renderGame() {
+		GL11.glTranslatef(-10, -16, -50);
+		GL11.glRotatef(30, 1, 0, 0);
+		GL11.glRotatef(45, 0, 1, 0);
+		disableTextures();
 		
+		for (int x = 0; x < 16; x++) {
+			for (int y = 0; y < 32; y++) {
+				for (int z = 0; z < 16; z++) {
+					grid.getBlock(x, y, z).render(grid, this, x, y, z);
+				}
+			}
+		}
+		enableTextures();
+		GL11.glRotatef(-45, 0, 1, 0);
+		GL11.glRotatef(-30, 1, 0, 0);
+		GL11.glTranslatef(10, 16, 50);
 	}
 	
 	private void start2D(int w, int h) {
