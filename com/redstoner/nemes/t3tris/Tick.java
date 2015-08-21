@@ -17,6 +17,7 @@ public class Tick extends Thread {
 	private T3tris instance;
 	private int ticks;
 	private Grid grid;
+	private Random rand = new Random();
 	
 	public Tick(T3tris inst) {
 		instance = inst;
@@ -33,18 +34,7 @@ public class Tick extends Thread {
 		try {
 			while (instance.getCurrentGameState() == GameState.STARTING) {
 				sleep(1);
-			}
-			
-			Random rand = new Random();
-			//TODO REMOVE
-			for (int i = 0; i < 16; i++) {
-				for (int j = 0; j < 32; j++) {
-					for (int k = 0; k < 16; k++) {
-						grid.setBlock(new NormalBlock(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255))), i, j, k);
-					}
-				}
-			}
-			
+			}			
 			while ((state = instance.getCurrentGameState()) != GameState.CLOSING) {
 				if (next_tick < System.currentTimeMillis()) {
 					long tick_start_time = System.currentTimeMillis();
