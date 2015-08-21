@@ -47,4 +47,13 @@ public class NormalBlock extends Block {
 		GL11.glEnd();
 		GL11.glColor3f(1, 1, 1);
 	}
+	
+	public void update(Grid g, int x, int y, int z, Random rand) {
+		Block b = g.getBlock(x, y - 1, z);
+		if (b instanceof AirBlock) {
+			g.setBlock(this, x, y - 1, z);
+			g.setBlock(new AirBlock(null), x, y, z);
+			g.scheduleUpdate(x, y - 1, z, g, rand, 10);
+		}
+	}
 }
