@@ -1,5 +1,7 @@
 package com.redstoner.nemes.t3tris.world.blocks;
 
+import java.util.Random;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.Color;
 
@@ -13,7 +15,7 @@ public class NormalBlock extends Block {
 		super(c);
 	}
 
-	public void render(Grid g, Render r, int x, int y, int z) {
+	public void render(Grid g, Render r, int x, int y, int z, Random rand) {
 		Block block1 = g.getBlock(x, y + 1, z);
 		Block block2 = g.getBlock(x, y, z + 1);
 		Block block3 = g.getBlock(x - 1, y, z);
