@@ -53,7 +53,7 @@ public class NormalBlock extends Block {
 		if (b instanceof AirBlock) {
 			g.setBlock(this, x, y - 1, z);
 			g.setBlock(new AirBlock(null), x, y, z);
-			g.scheduleUpdate(x, y - 1, z, g, rand, 10);
+			g.scheduleUpdate(x, y - 1, z, g, rand, 20);
 		}
 	}
 }
