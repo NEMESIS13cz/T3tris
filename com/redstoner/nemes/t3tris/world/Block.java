@@ -11,10 +11,12 @@ public class Block {
 	private float r, g, b, a;
 	
 	public Block(Color c) {
-		r = c.getRed() / 255.0f;
-		g = c.getGreen() / 255.0f;
-		b = c.getBlue() / 255.0f;
-		a = c.getAlpha() / 255.0f;
+		if (c != null) {
+			r = c.getRed() / 255.0f;
+			g = c.getGreen() / 255.0f;
+			b = c.getBlue() / 255.0f;
+			a = c.getAlpha() / 255.0f;
+		}
 	}
 	
 	public Color getColour() {
