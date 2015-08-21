@@ -71,7 +71,7 @@ public class Tick extends Thread {
 		}
 		if (KeyHandler.pressed(Keyboard.KEY_SPACE)) {
 			grid.setBlock(new NormalBlock(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255))), 7, 31, 7);
-			grid.scheduleUpdate(7, 31, 7, grid, rand, 1);
+			grid.scheduleUpdate(7, 31, 7, grid, rand, 0);
 		}
 	}
 	
