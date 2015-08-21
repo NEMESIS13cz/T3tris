@@ -13,7 +13,7 @@ public class Options {
 	public static int startHeight = 400;
 	
 	// configurable options
-	public static int framerateLimit = Integer.MAX_VALUE;
+	public static int framerateLimit = 60;
 	public static float FOV = 70.0f;
 	
 	public void loadOptions() {
