@@ -1,5 +1,7 @@
 package com.redstoner.nemes.t3tris;
 
+import java.util.Random;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -20,6 +22,7 @@ public class Render extends Thread {
 	private T3tris instance;
 	private int frames;
 	private Grid grid;
+	private Random rand = new Random();
 	
 	public Render(T3tris inst) {
 		instance = inst;
@@ -176,7 +179,7 @@ public class Render extends Thread {
 		for (int x = 0; x < 16; x++) {
 			for (int y = 0; y < 32; y++) {
 				for (int z = 0; z < 16; z++) {
-					grid.getBlock(x, y, z).render(grid, this, x, y, z);
+					grid.getBlock(x, y, z).render(grid, this, x, y, z, rand);
 				}
 			}
 		}
