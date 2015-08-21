@@ -8,6 +8,7 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.util.Color;
 
 import com.redstoner.nemes.t3tris.util.GameState;
+import com.redstoner.nemes.t3tris.util.KeyHandler;
 import com.redstoner.nemes.t3tris.util.Options;
 import com.redstoner.nemes.t3tris.world.Grid;
 import com.redstoner.nemes.t3tris.world.blocks.NormalBlock;
@@ -62,21 +63,15 @@ public class Tick extends Thread {
 		return tps;
 	}
 	
-	boolean wasSpaceDown = false;
-	
 	public void tickGame() {
+		KeyHandler.update();
 		grid.updateScheduler();
-		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
+		if (KeyHandler.pressed(Keyboard.KEY_ESCAPE)) {
 			instance.setCurrentGameState(GameState.MENU);
 		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
-			if (!wasSpaceDown) {
-				grid.setBlock(new NormalBlock(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255))), 7, 31, 7);
-				grid.scheduleUpdate(7, 31, 7, grid, rand, 1);
-			}
-			wasSpaceDown = true;
-		}else{
-			wasSpaceDown = false;
+		if (KeyHandler.pressed(Keyboard.KEY_SPACE)) {
+			grid.setBlock(new NormalBlock(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255))), 7, 31, 7);
+			grid.scheduleUpdate(7, 31, 7, grid, rand, 1);
 		}
 	}
 	
