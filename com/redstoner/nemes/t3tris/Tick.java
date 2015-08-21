@@ -34,7 +34,7 @@ public class Tick extends Thread {
 		try {
 			while (instance.getCurrentGameState() == GameState.STARTING) {
 				sleep(1);
-			}			
+			}
 			while ((state = instance.getCurrentGameState()) != GameState.CLOSING) {
 				if (next_tick < System.currentTimeMillis()) {
 					long tick_start_time = System.currentTimeMillis();
@@ -62,11 +62,22 @@ public class Tick extends Thread {
 		return tps;
 	}
 	
+	boolean wasSpaceDown = false;
+	
 	public void tickGame() {
+		grid.updateScheduler();
 		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
 			instance.setCurrentGameState(GameState.MENU);
 		}
-		
+		if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
+			if (!wasSpaceDown) {
+				grid.setBlock(new NormalBlock(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255))), 7, 31, 7);
+				grid.scheduleUpdate(7, 31, 7, grid, rand, 1);
+			}
+			wasSpaceDown = true;
+		}else{
+			wasSpaceDown = false;
+		}
 	}
 	
 	public void tickMenu() {
