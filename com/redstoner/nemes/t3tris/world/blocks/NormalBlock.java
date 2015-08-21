@@ -20,7 +20,7 @@ public class NormalBlock extends Block {
 		Block block2 = g.getBlock(x, y, z + 1);
 		Block block3 = g.getBlock(x - 1, y, z);
 		
-		GL11.glColor3f((getColour().getRed() / 255.0f), (getColour().getGreen() / 255.0f), (getColour().getBlue() / 255.0f));
+		GL11.glColor3f(getRed(), getGreen(), getBlue());
 		GL11.glBegin(GL11.GL_QUADS);
 		
 		if (block1 == null || block1.isTransparent()) {
