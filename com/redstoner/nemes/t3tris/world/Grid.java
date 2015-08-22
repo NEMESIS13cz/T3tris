@@ -34,7 +34,7 @@ public class Grid {
 			return false;
 		}
 		
-		grid[x][y][z] = block;
+		grid[x][y][z] = block == null ? new AirBlock(null) : block;
 		return true;
 	}
 	
