@@ -10,7 +10,9 @@ import org.lwjgl.util.Color;
 import com.redstoner.nemes.t3tris.util.GameState;
 import com.redstoner.nemes.t3tris.util.KeyHandler;
 import com.redstoner.nemes.t3tris.util.Options;
+import com.redstoner.nemes.t3tris.world.Block;
 import com.redstoner.nemes.t3tris.world.Grid;
+import com.redstoner.nemes.t3tris.world.blocks.AirBlock;
 import com.redstoner.nemes.t3tris.world.blocks.NormalBlock;
 
 public class Tick extends Thread {
@@ -36,6 +38,10 @@ public class Tick extends Thread {
 			while (instance.getCurrentGameState() == GameState.STARTING) {
 				sleep(1);
 			}
+			grid.setBlock(new NormalBlock((Color) Color.RED), 6, 0, 7);
+			grid.setBlock(new NormalBlock((Color) Color.BLUE), 7, 0, 7);
+			grid.setBlock(new NormalBlock((Color) Color.GREEN), 6, 0, 6);
+			grid.setBlock(new NormalBlock((Color) Color.WHITE), 7, 0, 6);
 			while ((state = instance.getCurrentGameState()) != GameState.CLOSING) {
 				if (next_tick < System.currentTimeMillis()) {
 					long tick_start_time = System.currentTimeMillis();
@@ -69,9 +75,93 @@ public class Tick extends Thread {
 		if (KeyHandler.pressed(Keyboard.KEY_ESCAPE)) {
 			instance.setCurrentGameState(GameState.MENU);
 		}
+		if (KeyHandler.pressed(Keyboard.KEY_W) || KeyHandler.pressed(Keyboard.KEY_UP)) { //TODO make this shiz respect scheduled updates and shift them
+			shiftBlocksNegZ();
+		}
+		if (KeyHandler.pressed(Keyboard.KEY_S) || KeyHandler.pressed(Keyboard.KEY_DOWN)) {
+			shiftBlocksPosZ();
+		}
+		if (KeyHandler.pressed(Keyboard.KEY_A) || KeyHandler.pressed(Keyboard.KEY_LEFT)) {
+			shiftBlocksNegX();
+		}
+		if (KeyHandler.pressed(Keyboard.KEY_D) || KeyHandler.pressed(Keyboard.KEY_RIGHT)) {
+			shiftBlocksPosX();
+		}
 		if (KeyHandler.pressed(Keyboard.KEY_SPACE)) {
 			grid.setBlock(new NormalBlock(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255))), 7, 31, 7);
 			grid.scheduleUpdate(7, 31, 7, grid, rand, 0);
+		}
+	}
+	
+	private void shiftBlocksNegX() {
+		for (int x = 0; x < 16; x++) {
+			for (int z = 0; z < 16; z++) {
+				for (int y = 0; y < 32; y++) {
+					Block b = grid.getBlock(x, y, z);
+					if (b instanceof AirBlock) {
+						continue;
+					}
+					Block b2 = grid.getBlock(x - 1, y, z);
+					if (b2 != null && b2 instanceof AirBlock) {
+						grid.setBlock(b, x - 1, y, z);
+						grid.setBlock(null, x, y, z);
+					}
+				}
+			}
+		}
+	}
+	
+	private void shiftBlocksPosX() {
+		for (int x = 15; x > -1; x--) {
+			for (int z = 0; z < 16; z++) {
+				for (int y = 0; y < 32; y++) {
+					Block b = grid.getBlock(x, y, z);
+					if (b instanceof AirBlock) {
+						continue;
+					}
+					Block b2 = grid.getBlock(x + 1, y, z);
+					if (b2 != null && b2 instanceof AirBlock) {
+						grid.setBlock(b, x + 1, y, z);
+						grid.setBlock(null, x, y, z);
+					}
+				}
+			}
+		}
+	}
+	
+	private void shiftBlocksNegZ() {
+		for (int x = 0; x < 16; x++) {
+			for (int z = 0; z < 16; z++) {
+				for (int y = 0; y < 32; y++) {
+					Block b = grid.getBlock(x, y, z);
+					if (b instanceof AirBlock) {
+						continue;
+					}
+					Block b2 = grid.getBlock(x, y, z - 1);
+					if (b2 != null && b2 instanceof AirBlock) {
+						grid.setBlock(b, x, y, z - 1);
+						grid.setBlock(null, x, y, z);
+					}
+				}
+			}
+		}
+	}
+	
+	private void shiftBlocksPosZ() {
+		for (int x = 0; x < 16; x++) {
+			for (int z = 15; z > -1; z--) {
+				for (int y = 0; y < 32; y++) {
+					Block b = grid.getBlock(x, y, z);
+					if (b instanceof AirBlock) {
+						continue;
+					}
+					Block b2 = grid.getBlock(x, y, z + 1);
+					if (b2 != null && b2 instanceof AirBlock) {
+						grid.setBlock(b, x, y, z + 1);
+						grid.setBlock(null, x, y, z);
+					}
+				}
+			}
 		}
 	}
 	
