@@ -3,7 +3,6 @@ package com.redstoner.nemes.t3tris;
 import java.util.Random;
 
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.Color;
 
