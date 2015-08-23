@@ -46,6 +46,9 @@ public class Tick extends Thread {
 				if (next_tick < System.currentTimeMillis()) {
 					long tick_start_time = System.currentTimeMillis();
 					next_tick += tick_time;
+					
+					KeyHandler.update();
+					MouseHandler.update();
 					if (state == GameState.MENU) {
 						tickMenu();
 					}else{
@@ -70,7 +73,6 @@ public class Tick extends Thread {
 	}
 	
 	public void tickGame() {
-		KeyHandler.update();
 		grid.updateScheduler();
 		if (KeyHandler.pressed(Keyboard.KEY_ESCAPE)) {
 			instance.setCurrentGameState(GameState.MENU);

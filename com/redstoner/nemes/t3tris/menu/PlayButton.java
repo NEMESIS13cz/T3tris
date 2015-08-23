@@ -41,7 +41,7 @@ public class PlayButton extends Button {
 		int y2_ = (int) (y2 * h);
 		
 		if (x > x_ && x < x2_ && y > y_ && y < y2_) {
-			if (!MouseHandler.released(0)) {
+			if (MouseHandler.released(0)) {
 				T3tris.getInstance().setCurrentGameState(GameState.PLAYING);
 			}
 		}
