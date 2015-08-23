@@ -3,6 +3,7 @@ package com.redstoner.nemes.t3tris.util;
 import java.util.HashMap;
 
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
 
 public class MouseHandler {
 
@@ -19,7 +20,7 @@ public class MouseHandler {
 			buttonMap.put(button, Mouse.isButtonDown(button));
 		}
 		x = Mouse.getX();
-		y = Mouse.getY();
+		y = Display.getHeight() - Mouse.getY();
 	}
 	
 	public static boolean down(int button) {
