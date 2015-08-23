@@ -13,6 +13,7 @@ import org.lwjgl.util.glu.GLU;
 import com.redstoner.nemes.t3tris.gfx.FontManager;
 import com.redstoner.nemes.t3tris.gfx.TextureManager;
 import com.redstoner.nemes.t3tris.util.GameState;
+import com.redstoner.nemes.t3tris.util.MouseHandler;
 import com.redstoner.nemes.t3tris.util.Options;
 import com.redstoner.nemes.t3tris.util.Stats;
 import com.redstoner.nemes.t3tris.world.Grid;
@@ -171,6 +172,8 @@ public class Render extends Thread {
 	}
 	
 	public void renderGame() {
+		MouseHandler.update();
+		
 		GL11.glTranslatef(-10, -16, -50);
 		GL11.glRotatef(30, 1, 0, 0);
 		GL11.glRotatef(45, 0, 1, 0);
