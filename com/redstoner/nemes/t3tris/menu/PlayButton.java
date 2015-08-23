@@ -1,12 +1,12 @@
 package com.redstoner.nemes.t3tris.menu;
 
-import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import com.redstoner.nemes.t3tris.Render;
 import com.redstoner.nemes.t3tris.T3tris;
 import com.redstoner.nemes.t3tris.gfx.FontManager;
 import com.redstoner.nemes.t3tris.util.GameState;
+import com.redstoner.nemes.t3tris.util.MouseHandler;
 
 public class PlayButton extends Button {
 
@@ -34,8 +34,6 @@ public class PlayButton extends Button {
 		FontManager.draw("courier", "Play", x_, y_);
 	}
 	
-	boolean wasMouseButtonDown = false;
-	
 	public void update(int x, int y, int w, int h) {
 		int x_ = (int) (this.x * w);
 		int x2_ = (int) (x2 * w);
@@ -43,10 +41,9 @@ public class PlayButton extends Button {
 		int y2_ = (int) (y2 * h);
 		
 		if (x > x_ && x < x2_ && y > y_ && y < y2_) {
-			if (!Mouse.isButtonDown(0) && wasMouseButtonDown) {
+			if (!MouseHandler.released(0)) {
 				T3tris.getInstance().setCurrentGameState(GameState.PLAYING);
 			}
 		}
-		wasMouseButtonDown = Mouse.isButtonDown(0);
 	}
 }

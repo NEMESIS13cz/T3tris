@@ -9,6 +9,7 @@ import org.lwjgl.util.Color;
 
 import com.redstoner.nemes.t3tris.util.GameState;
 import com.redstoner.nemes.t3tris.util.KeyHandler;
+import com.redstoner.nemes.t3tris.util.MouseHandler;
 import com.redstoner.nemes.t3tris.util.Options;
 import com.redstoner.nemes.t3tris.world.Block;
 import com.redstoner.nemes.t3tris.world.Grid;
@@ -166,7 +167,7 @@ public class Tick extends Thread {
 	}
 	
 	public void tickMenu() {
-		instance.currMenu.update(Mouse.getX(), Display.getHeight() - Mouse.getY(), Display.getWidth(), Display.getHeight());
+		instance.currMenu.update(MouseHandler.getX(), MouseHandler.getY(), Display.getWidth(), Display.getHeight());
 	}
 	
 	public synchronized Grid getGrid() {
