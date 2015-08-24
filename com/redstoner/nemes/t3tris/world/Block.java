@@ -1,14 +1,17 @@
 package com.redstoner.nemes.t3tris.world;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import org.lwjgl.util.Color;
 
 import com.redstoner.nemes.t3tris.Render;
+import com.redstoner.nemes.t3tris.util.ScheduledUpdate;
 
 public class Block {
 
 	private float r, g, b, a;
+	private ArrayList<ScheduledUpdate> updates = new ArrayList<ScheduledUpdate>();
 	
 	public Block(Color c) {
 		if (c != null) {
@@ -49,5 +52,21 @@ public class Block {
 	
 	public boolean isTransparent() {
 		return false;
+	}
+	
+	public void appendUpdate(ScheduledUpdate u) {
+		updates.add(u);
+	}
+	
+	public void removeUpdate(ScheduledUpdate u) {
+		updates.remove(u);
+	}
+	
+	public void moveBlock(Grid g, int x, int y, int z, int newX, int newY, int newZ) {
+		g.setBlock(this, newX, newY, newZ);
+		for (ScheduledUpdate u : updates) {
+			u.moveUpdate(newX, newY, newZ);
+		}
+		g.setBlock(null, x, y, z);
 	}
 }

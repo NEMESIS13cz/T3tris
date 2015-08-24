@@ -46,13 +46,17 @@ public class Grid {
 	}
 	
 	public void scheduleUpdate(int x, int y, int z, Grid g, Random rand, int ticks) {
-		scheduler.add(new ScheduledUpdate(ticks, x, y, z, g, rand));
+		ScheduledUpdate u = new ScheduledUpdate(ticks, x, y, z, g, rand);
+		scheduler.add(u);
+		g.getBlock(x, y, z).appendUpdate(u);
 	}
 	
 	public void updateScheduler() {
 		for (int i = 0; i < scheduler.size(); i++) {
-			if (scheduler.get(i).updateTime() <= 0) {
-				scheduler.get(i).execute();
+			ScheduledUpdate u = scheduler.get(i);
+			if (u.updateTime() <= 0) {
+				u.execute();
+				u.getAssociatedBlock().removeUpdate(u);
 				scheduler.remove(i);
 				i--;
 			}

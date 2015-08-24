@@ -77,7 +77,7 @@ public class Tick extends Thread {
 		if (KeyHandler.pressed(Keyboard.KEY_ESCAPE)) {
 			instance.setCurrentGameState(GameState.MENU);
 		}
-		if (KeyHandler.pressed(Keyboard.KEY_W) || KeyHandler.pressed(Keyboard.KEY_UP)) { //TODO make this shiz respect scheduled updates and shift them
+		if (KeyHandler.pressed(Keyboard.KEY_W) || KeyHandler.pressed(Keyboard.KEY_UP)) {
 			shiftBlocksNegZ();
 		}
 		if (KeyHandler.pressed(Keyboard.KEY_S) || KeyHandler.pressed(Keyboard.KEY_DOWN)) {
@@ -105,8 +105,7 @@ public class Tick extends Thread {
 					}
 					Block b2 = grid.getBlock(x - 1, y, z);
 					if (b2 != null && b2 instanceof AirBlock) {
-						grid.setBlock(b, x - 1, y, z);
-						grid.setBlock(null, x, y, z);
+						b.moveBlock(grid, x, y, z, x - 1, y, z);
 					}
 				}
 			}
@@ -123,8 +122,7 @@ public class Tick extends Thread {
 					}
 					Block b2 = grid.getBlock(x + 1, y, z);
 					if (b2 != null && b2 instanceof AirBlock) {
-						grid.setBlock(b, x + 1, y, z);
-						grid.setBlock(null, x, y, z);
+						b.moveBlock(grid, x, y, z, x + 1, y, z);
 					}
 				}
 			}
@@ -141,8 +139,7 @@ public class Tick extends Thread {
 					}
 					Block b2 = grid.getBlock(x, y, z - 1);
 					if (b2 != null && b2 instanceof AirBlock) {
-						grid.setBlock(b, x, y, z - 1);
-						grid.setBlock(null, x, y, z);
+						b.moveBlock(grid, x, y, z, x, y, z - 1);
 					}
 				}
 			}
@@ -159,8 +156,7 @@ public class Tick extends Thread {
 					}
 					Block b2 = grid.getBlock(x, y, z + 1);
 					if (b2 != null && b2 instanceof AirBlock) {
-						grid.setBlock(b, x, y, z + 1);
-						grid.setBlock(null, x, y, z);
+						b.moveBlock(grid, x, y, z, x, y, z + 1);
 					}
 				}
 			}
