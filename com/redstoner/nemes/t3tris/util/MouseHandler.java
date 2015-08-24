@@ -9,13 +9,12 @@ public class MouseHandler {
 
 	private static HashMap<Integer, Boolean> buttonMap = new HashMap<Integer, Boolean>();
 	private static HashMap<Integer, Boolean> buttonMapOld = new HashMap<Integer, Boolean>();
-	private static final int[] buttons = new int[] {0 /* Left */, 1 /* Right */};
 	
 	private static int x = 0;
 	private static int y = 0;
 	
 	public static void update() {
-		for (int button : buttons) {
+		for (int button : Controls.getMouseButtons()) {
 			buttonMapOld.put(button, buttonMap.get(button));
 			buttonMap.put(button, Mouse.isButtonDown(button));
 		}

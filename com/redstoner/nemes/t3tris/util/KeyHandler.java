@@ -8,14 +8,9 @@ public class KeyHandler {
 
 	private static HashMap<Integer, Boolean> keyMap = new HashMap<Integer, Boolean>();
 	private static HashMap<Integer, Boolean> keyMapOld = new HashMap<Integer, Boolean>();
-	private static int[] keys = new int[] {
-			Keyboard.KEY_ESCAPE, Keyboard.KEY_SPACE,
-			Keyboard.KEY_W, Keyboard.KEY_A, Keyboard.KEY_S, Keyboard.KEY_D, 
-			Keyboard.KEY_UP, Keyboard.KEY_LEFT, Keyboard.KEY_DOWN, Keyboard.KEY_RIGHT
-			};
 	
 	public static void update() {
-		for (int key : keys) {
+		for (int key : Controls.getKeyboardKeys()) {
 			keyMapOld.put(key, keyMap.get(key));
 			keyMap.put(key, Keyboard.isKeyDown(key));
 		}
@@ -34,7 +29,7 @@ public class KeyHandler {
 	}
 	
 	static {
-		for (int key : keys) {
+		for (int key : Controls.getKeyboardKeys()) {
 			keyMap.put(key, false);
 			keyMapOld.put(key, false);
 		}

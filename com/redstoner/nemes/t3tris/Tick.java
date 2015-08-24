@@ -2,10 +2,10 @@ package com.redstoner.nemes.t3tris;
 
 import java.util.Random;
 
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.Color;
 
+import com.redstoner.nemes.t3tris.util.Controls;
 import com.redstoner.nemes.t3tris.util.GameState;
 import com.redstoner.nemes.t3tris.util.KeyHandler;
 import com.redstoner.nemes.t3tris.util.MouseHandler;
@@ -74,22 +74,22 @@ public class Tick extends Thread {
 	
 	public void tickGame() {
 		grid.updateScheduler();
-		if (KeyHandler.pressed(Keyboard.KEY_ESCAPE)) {
+		if (KeyHandler.pressed(Controls.getEsc())) {
 			instance.setCurrentGameState(GameState.MENU);
 		}
-		if (KeyHandler.pressed(Keyboard.KEY_W) || KeyHandler.pressed(Keyboard.KEY_UP)) {
+		if (KeyHandler.pressed(Controls.getW()) || KeyHandler.pressed(Controls.getUp())) {
 			shiftBlocksNegZ();
 		}
-		if (KeyHandler.pressed(Keyboard.KEY_S) || KeyHandler.pressed(Keyboard.KEY_DOWN)) {
+		if (KeyHandler.pressed(Controls.getS()) || KeyHandler.pressed(Controls.getDown())) {
 			shiftBlocksPosZ();
 		}
-		if (KeyHandler.pressed(Keyboard.KEY_A) || KeyHandler.pressed(Keyboard.KEY_LEFT)) {
+		if (KeyHandler.pressed(Controls.getA()) || KeyHandler.pressed(Controls.getLeft())) {
 			shiftBlocksNegX();
 		}
-		if (KeyHandler.pressed(Keyboard.KEY_D) || KeyHandler.pressed(Keyboard.KEY_RIGHT)) {
+		if (KeyHandler.pressed(Controls.getD()) || KeyHandler.pressed(Controls.getRight())) {
 			shiftBlocksPosX();
 		}
-		if (KeyHandler.pressed(Keyboard.KEY_SPACE)) {
+		if (KeyHandler.pressed(Controls.getSpace())) {
 			grid.setBlock(new NormalBlock(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255))), 7, 31, 7);
 			grid.scheduleUpdate(7, 31, 7, grid, rand, 0);
 		}

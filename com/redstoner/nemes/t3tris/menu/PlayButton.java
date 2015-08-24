@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import com.redstoner.nemes.t3tris.Render;
 import com.redstoner.nemes.t3tris.T3tris;
 import com.redstoner.nemes.t3tris.gfx.FontManager;
+import com.redstoner.nemes.t3tris.util.Controls;
 import com.redstoner.nemes.t3tris.util.GameState;
 import com.redstoner.nemes.t3tris.util.MouseHandler;
 
@@ -41,7 +42,7 @@ public class PlayButton extends Button {
 		int y2_ = (int) (y2 * h);
 		
 		if (x > x_ && x < x2_ && y > y_ && y < y2_) {
-			if (MouseHandler.released(0)) {
+			if (MouseHandler.released(Controls.getLeftMouseButton())) {
 				T3tris.getInstance().setCurrentGameState(GameState.PLAYING);
 			}
 		}
