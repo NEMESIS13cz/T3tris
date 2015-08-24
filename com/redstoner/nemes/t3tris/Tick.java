@@ -104,7 +104,8 @@ public class Tick extends Thread {
 						continue;
 					}
 					Block b2 = grid.getBlock(x - 1, y, z);
-					if (b2 != null && b2 instanceof AirBlock) {
+					Block b3 = grid.getBlock(x, y - 1, z);
+					if (b2 != null && b2 instanceof AirBlock && b3 != null && b3 instanceof AirBlock) {
 						b.moveBlock(grid, x, y, z, x - 1, y, z);
 					}
 				}
@@ -121,7 +122,8 @@ public class Tick extends Thread {
 						continue;
 					}
 					Block b2 = grid.getBlock(x + 1, y, z);
-					if (b2 != null && b2 instanceof AirBlock) {
+					Block b3 = grid.getBlock(x, y - 1, z);
+					if (b2 != null && b2 instanceof AirBlock && b3 != null && b3 instanceof AirBlock) {
 						b.moveBlock(grid, x, y, z, x + 1, y, z);
 					}
 				}
@@ -138,7 +140,8 @@ public class Tick extends Thread {
 						continue;
 					}
 					Block b2 = grid.getBlock(x, y, z - 1);
-					if (b2 != null && b2 instanceof AirBlock) {
+					Block b3 = grid.getBlock(x, y - 1, z);
+					if (b2 != null && b2 instanceof AirBlock && b3 != null && b3 instanceof AirBlock) {
 						b.moveBlock(grid, x, y, z, x, y, z - 1);
 					}
 				}
@@ -155,7 +158,8 @@ public class Tick extends Thread {
 						continue;
 					}
 					Block b2 = grid.getBlock(x, y, z + 1);
-					if (b2 != null && b2 instanceof AirBlock) {
+					Block b3 = grid.getBlock(x, y - 1, z);
+					if (b2 != null && b2 instanceof AirBlock && b3 != null && b3 instanceof AirBlock) {
 						b.moveBlock(grid, x, y, z, x, y, z + 1);
 					}
 				}
