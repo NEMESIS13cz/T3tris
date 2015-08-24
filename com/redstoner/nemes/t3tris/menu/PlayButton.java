@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.redstoner.nemes.t3tris.Render;
 import com.redstoner.nemes.t3tris.T3tris;
+import com.redstoner.nemes.t3tris.gfx.FontMap;
 import com.redstoner.nemes.t3tris.util.Controls;
 import com.redstoner.nemes.t3tris.util.GameState;
 import com.redstoner.nemes.t3tris.util.MouseHandler;
@@ -20,7 +21,7 @@ public class PlayButton extends Button {
 		float x2_ = x2 * w;
 		float y_ = this.y * h;
 		float y2_ = y2 * h;
-		
+
 		Render.disableTextures();
 		GL11.glBegin(GL11.GL_QUADS);
 		GL11.glColor4f(0.8f, 0.8f, 0.8f, 0.4f);
@@ -30,6 +31,7 @@ public class PlayButton extends Button {
 		GL11.glVertex2f(x_, y_);
 		GL11.glEnd();
 		Render.enableTextures();
+		FontMap.drawString(x_, y_, 1.0d, "AAAAA");
 		
 		//FontManager.draw("courier", "Play", x_, y_);
 	}

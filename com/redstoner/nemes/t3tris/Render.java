@@ -10,6 +10,7 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 
+import com.redstoner.nemes.t3tris.gfx.FontMap;
 import com.redstoner.nemes.t3tris.gfx.TextureManager;
 import com.redstoner.nemes.t3tris.util.GameState;
 import com.redstoner.nemes.t3tris.util.Options;
@@ -90,6 +91,12 @@ public class Render extends Thread {
 		
 		createWindow();
 		initializeOpenGL();
+		
+		try {
+			FontMap.initialize("font", "font_map", new char[] {'A'}, new int[] {5}, 6, 8);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 		
 		TextureManager.loadTexture(false, "missing", "missing");
 		TextureManager.loadTexture(true, "cross", "menu_exit");
