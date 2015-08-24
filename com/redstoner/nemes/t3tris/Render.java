@@ -10,7 +10,6 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 
-import com.redstoner.nemes.t3tris.gfx.FontManager;
 import com.redstoner.nemes.t3tris.gfx.TextureManager;
 import com.redstoner.nemes.t3tris.util.GameState;
 import com.redstoner.nemes.t3tris.util.Options;
@@ -94,7 +93,6 @@ public class Render extends Thread {
 		
 		TextureManager.loadTexture(false, "missing", "missing");
 		TextureManager.loadTexture(true, "cross", "menu_exit");
-		FontManager.loadFont(true, 24, 0, "courier", "Courier New");
 		
 		instance.setCurrentGameState(GameState.MENU);
 		
