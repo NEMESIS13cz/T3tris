@@ -169,6 +169,9 @@ public class Tick extends Thread {
 	
 	public void tickMenu() {
 		instance.currMenu.update(MouseHandler.getX(), MouseHandler.getY(), Display.getWidth(), Display.getHeight());
+		if (KeyHandler.pressed(Controls.getEsc())) {
+			instance.currMenu = instance.currMenu.getEscapeMenu();
+		}
 	}
 	
 	public synchronized Grid getGrid() {

@@ -6,15 +6,13 @@ public class Options {
 	public static final float zNear = 0.002f;
 	public static final float zFar = 200.0f;
 	public static final int tickrateLimit = 20;
+	public static final float FOV = 70.0f;
 	public static final String name = "T3tris";
-	
-	// startup-arg-changeable options
-	public static int startWidth = 800;
-	public static int startHeight = 450;
+	public static final int startWidth = 800;
+	public static final int startHeight = 450;
 	
 	// configurable options
 	public static int framerateLimit = 60;
-	public static float FOV = 70.0f;
 	
 	public void loadOptions() {
 		
