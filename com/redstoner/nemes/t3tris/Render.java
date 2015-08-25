@@ -107,7 +107,6 @@ public class Render extends Thread {
 		}
 		
 		TextureManager.loadTexture(false, "missing", "missing");
-		TextureManager.loadTexture(true, "cross", "menu_exit");
 		
 		instance.setCurrentGameState(GameState.MENU);
 		

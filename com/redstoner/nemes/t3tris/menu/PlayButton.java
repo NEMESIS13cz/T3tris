@@ -24,7 +24,7 @@ public class PlayButton extends Button {
 		
 		Render.disableTextures();
 		GL11.glBegin(GL11.GL_QUADS);
-		GL11.glColor4f(0.8f, 0.8f, 0.8f, 0.4f);
+		GL11.glColor4f(0.5f, 0.5f, 0.5f, 0.6f);
 		GL11.glVertex2f(x_, y2_);
 		GL11.glVertex2f(x2_, y2_);
 		GL11.glVertex2f(x2_, y_);
@@ -34,7 +34,7 @@ public class PlayButton extends Button {
 
 		double button_h = y2_ - y_;
 		double scale = button_h / 10;
-		FontMap.drawString(x_ + (x2_ - x_) / 2, y_ + (button_h - scale * 8) / 2, scale, "Play", 0xFFFF00, true);
+		FontMap.drawString(x_ + (x2_ - x_) / 2, y_ + (button_h - scale * 8) / 2, scale, "Play", 0xF0F0F0, true);
 	}
 	
 	public void update(int x, int y, int w, int h) {
