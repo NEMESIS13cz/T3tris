@@ -31,7 +31,10 @@ public class PlayButton extends Button {
 		GL11.glVertex2f(x_, y_);
 		GL11.glEnd();
 		Render.enableTextures();
-		FontMap.drawString(x_, y_, 1.0d, "AAAAA");
+		FontMap.drawString(0, 0, 10.0d, "ABCDEFGHIJKLM");
+		FontMap.drawString(0, 100, 10.0d, "NOPQRSTUVWXYZ");
+		FontMap.drawString(0, 200, 10.0d, "abcdefghijklm");
+		FontMap.drawString(0, 300, 10.0d, "nopqrstuvwxyz");
 		
 		//FontManager.draw("courier", "Play", x_, y_);
 	}

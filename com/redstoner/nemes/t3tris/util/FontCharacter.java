@@ -18,15 +18,15 @@ public class FontCharacter {
 	
 	public void draw(double x, double y, double scale) {
 		GL11.glBegin(GL11.GL_QUADS);
-		
-		GL11.glTexCoord2d(u, v);
-		GL11.glVertex2d(x * scale, y * scale);
-		GL11.glTexCoord2d(u2, v);
-		GL11.glVertex2d((x + w) * scale, y * scale);
-		GL11.glTexCoord2d(u2, v2);
-		GL11.glVertex2d((x + w) * scale, (y + h) * scale);
+
 		GL11.glTexCoord2d(u, v2);
-		GL11.glVertex2d(x * scale, (y + h) * scale);
+		GL11.glVertex2d(x, y + h * scale);
+		GL11.glTexCoord2d(u2, v2);
+		GL11.glVertex2d(x + w * scale, y + h * scale);
+		GL11.glTexCoord2d(u2, v);
+		GL11.glVertex2d(x + w * scale, y);
+		GL11.glTexCoord2d(u, v);
+		GL11.glVertex2d(x, y);
 		
 		GL11.glEnd();
 	}

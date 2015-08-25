@@ -19,6 +19,10 @@ import com.redstoner.nemes.t3tris.world.Grid;
 
 public class Render extends Thread {
 
+	private static char[] font_chars = new char[] {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+	private static int[] font_widths = new int[]  { 5,   5,   5,   5,   5,   5,   5,   5,   3,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5};
+	private static int font_missing_width = 5;
+	
 	private T3tris instance;
 	private int frames;
 	private Grid grid;
@@ -93,7 +97,7 @@ public class Render extends Thread {
 		initializeOpenGL();
 		
 		try {
-			FontMap.initialize("font", "font_map", new char[] {'A'}, new int[] {5}, 6, 8);
+			FontMap.initialize("font", "font_map", font_chars, font_widths, 6, 8, font_missing_width);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
