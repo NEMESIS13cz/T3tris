@@ -19,8 +19,12 @@ import com.redstoner.nemes.t3tris.world.Grid;
 
 public class Render extends Thread {
 
-	private static char[] font_chars = new char[] {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-	private static int[] font_widths = new int[]  { 5,   5,   5,   5,   5,   5,   5,   5,   3,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5};
+	private static char[] font_chars = new char[] {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+												   'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+												   '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+	private static int[] font_widths = new int[]  { 5,   5,   5,   5,   5,   5,   5,   5,   3,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,   5,
+													5,   5,   5,   5,   5,   3,   5,   5,   1,   5,   5,   2,   5,   5,   5,   5,   5,   5,   5,   3,   5,   5,   5,   5,   5,   5,
+													5,   5,   5,   5,   5,   5,   5,   5,   5,   5};
 	private static int font_missing_width = 5;
 	
 	private T3tris instance;
@@ -153,8 +157,8 @@ public class Render extends Thread {
 	}
 	
 	public void renderMenu() {
-		int w = Display.getWidth();
-		int h = Display.getHeight();
+		int w = 16;
+		int h = 9;
 		
 		start2D(w, h);
 		disableTextures();
@@ -179,7 +183,7 @@ public class Render extends Thread {
 		end2D();
 	}
 	
-	public void renderGame() {		
+	public void renderGame() {
 		GL11.glTranslatef(-10, -16, -50);
 		GL11.glRotatef(30, 1, 0, 0);
 		GL11.glRotatef(45, 0, 1, 0);

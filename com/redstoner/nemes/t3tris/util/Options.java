@@ -9,8 +9,8 @@ public class Options {
 	public static final String name = "T3tris";
 	
 	// startup-arg-changeable options
-	public static int startWidth = 600;
-	public static int startHeight = 400;
+	public static int startWidth = 800;
+	public static int startHeight = 450;
 	
 	// configurable options
 	public static int framerateLimit = 60;
