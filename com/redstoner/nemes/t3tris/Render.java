@@ -86,7 +86,6 @@ public class Render extends Thread {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		System.exit(0);
 	}
 	
 	public void run() {
@@ -104,6 +103,7 @@ public class Render extends Thread {
 			FontMap.initialize("font", "font_map", font_chars, font_widths, 6, 8, font_missing_width);
 		} catch (Exception e1) {
 			e1.printStackTrace();
+			System.exit(1);
 		}
 		
 		TextureManager.loadTexture(false, "missing", "missing");

@@ -14,11 +14,16 @@ public class Options {
 	// configurable options
 	public static int framerateLimit = 60;
 	
-	public void loadOptions() {
-		
+	public static void load() throws DataException {
+		DataFile defaultFile = new DataFile();
+		defaultFile.addInteger("framerate_limit", 60);
+		DataFile file = new DataFile("T3tris", "options.dat", defaultFile);
+		framerateLimit = file.getInteger("framerate_limit");
 	}
 	
-	public void saveOptions() {
-		
+	public static void save() {
+		DataFile file = new DataFile();
+		file.addInteger("framerate_limit", framerateLimit);
+		file.saveFile("T3tris", "options.dat");
 	}
 }

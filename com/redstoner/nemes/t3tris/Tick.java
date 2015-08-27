@@ -6,6 +6,7 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.util.Color;
 
 import com.redstoner.nemes.t3tris.util.Controls;
+import com.redstoner.nemes.t3tris.util.DataException;
 import com.redstoner.nemes.t3tris.util.GameState;
 import com.redstoner.nemes.t3tris.util.KeyHandler;
 import com.redstoner.nemes.t3tris.util.MouseHandler;
@@ -31,6 +32,13 @@ public class Tick extends Thread {
 		long next_tick = System.currentTimeMillis();
 		long tick_time = 1000 / Options.tickrateLimit;
 		GameState state;
+
+		try {
+			Options.load();
+			Controls.load();
+		} catch (DataException e1) {
+			e1.printStackTrace();
+		}
 		
 		grid = new Grid();
 		
@@ -64,12 +72,19 @@ public class Tick extends Thread {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
+		saveData();
 	}
 	
 	protected synchronized int getTicks() {
 		int tps = ticks;
 		ticks = 0;
 		return tps;
+	}
+	
+	public void saveData() {
+		Options.save();
+		Controls.save();
 	}
 	
 	public void tickGame() {
