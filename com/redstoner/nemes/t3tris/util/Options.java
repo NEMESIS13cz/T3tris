@@ -16,7 +16,7 @@ public class Options {
 	
 	public static void load() throws DataException {
 		DataFile defaultFile = new DataFile();
-		defaultFile.addInteger("framerate_limit", 60);
+		defaultFile.addInteger("framerate_limit", framerateLimit);
 		DataFile file = new DataFile("T3tris", "options.dat", defaultFile);
 		framerateLimit = file.getInteger("framerate_limit");
 	}
