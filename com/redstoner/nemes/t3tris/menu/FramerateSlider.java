@@ -22,7 +22,7 @@ public class FramerateSlider extends Button {
 		float posX = ((Options.framerateLimit == Integer.MAX_VALUE ? 205 : Options.framerateLimit) - 5) / 200.0f;
 		sliderX = posX * w;
 	}
-
+	
 	public void render(int w, int h) {
 		float x_ = this.x * w;
 		float x2_ = x2 * w;

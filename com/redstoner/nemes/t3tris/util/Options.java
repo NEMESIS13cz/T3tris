@@ -1,5 +1,7 @@
 package com.redstoner.nemes.t3tris.util;
 
+import com.redstoner.nemes.t3tris.T3tris;
+
 public class Options {
 
 	// non-configurable options
@@ -17,13 +19,13 @@ public class Options {
 	public static void load() throws DataException {
 		DataFile defaultFile = new DataFile();
 		defaultFile.addInteger("framerate_limit", framerateLimit);
-		DataFile file = new DataFile("T3tris", "options.dat", defaultFile);
+		DataFile file = new DataFile(T3tris.FILE_PATH, "options.dat", defaultFile);
 		framerateLimit = file.getInteger("framerate_limit");
 	}
 	
 	public static void save() {
 		DataFile file = new DataFile();
 		file.addInteger("framerate_limit", framerateLimit);
-		file.saveFile("T3tris", "options.dat");
+		file.saveFile(T3tris.FILE_PATH, "options.dat");
 	}
 }

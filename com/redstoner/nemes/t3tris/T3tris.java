@@ -10,6 +10,8 @@ public class T3tris {
 		new T3tris();
 	}
 	
+	public static final String FILE_PATH = "T3tris";
+	
 	protected Render render;
 	protected Tick tick;
 	protected Util util;

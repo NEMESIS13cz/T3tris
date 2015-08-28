@@ -2,8 +2,13 @@ package com.redstoner.nemes.t3tris.util;
 
 import org.lwjgl.input.Keyboard;
 
+import com.redstoner.nemes.t3tris.T3tris;
+
 public class Controls {
 
+	private static final String KEY_PREFIX = "key_";
+	private static final String MOUSE_PREFIX = "mouse_";
+	
 	private static int leftMouseButton = 0;
 	private static int rightMouseButton = 1;
 	private static int W = Keyboard.KEY_W;
@@ -140,12 +145,53 @@ public class Controls {
 		return keyboardKeys.clone();
 	}
 	
-	public static void load() {
+	public static void load() throws DataException {
+		DataFile def = new DataFile();
+		def.addInteger(Controls.KEY_PREFIX + "escape", esc);
+		def.addInteger(Controls.KEY_PREFIX + "space", space);
+		def.addInteger(Controls.KEY_PREFIX + "w", W);
+		def.addInteger(Controls.KEY_PREFIX + "a", A);
+		def.addInteger(Controls.KEY_PREFIX + "s", S);
+		def.addInteger(Controls.KEY_PREFIX + "d", D);
+		def.addInteger(Controls.KEY_PREFIX + "up", up);
+		def.addInteger(Controls.KEY_PREFIX + "left", left);
+		def.addInteger(Controls.KEY_PREFIX + "down", down);
+		def.addInteger(Controls.KEY_PREFIX + "right", right);
+		def.addInteger(Controls.MOUSE_PREFIX + "left", leftMouseButton);
+		def.addInteger(Controls.MOUSE_PREFIX + "right", rightMouseButton);
+		DataFile file = new DataFile(T3tris.FILE_PATH, "controls.dat", def);
+		esc = file.getInteger(Controls.KEY_PREFIX + "escape");
+		space = file.getInteger(Controls.KEY_PREFIX + "space");
+		W = file.getInteger(Controls.KEY_PREFIX + "w");
+		A = file.getInteger(Controls.KEY_PREFIX + "a");
+		S = file.getInteger(Controls.KEY_PREFIX + "s");
+		D = file.getInteger(Controls.KEY_PREFIX + "d");
+		up = file.getInteger(Controls.KEY_PREFIX + "up");
+		left = file.getInteger(Controls.KEY_PREFIX + "left");
+		down = file.getInteger(Controls.KEY_PREFIX + "down");
+		right = file.getInteger(Controls.KEY_PREFIX + "right");
+		leftMouseButton = file.getInteger(Controls.MOUSE_PREFIX + "left");
+		rightMouseButton = file.getInteger(Controls.MOUSE_PREFIX + "right");
+		
 		updateArrays();
 	}
 	
 	public static void save() {
+		DataFile file = new DataFile();
+		file.addInteger(Controls.KEY_PREFIX + "escape", esc);
+		file.addInteger(Controls.KEY_PREFIX + "space", space);
+		file.addInteger(Controls.KEY_PREFIX + "w", W);
+		file.addInteger(Controls.KEY_PREFIX + "a", A);
+		file.addInteger(Controls.KEY_PREFIX + "s", S);
+		file.addInteger(Controls.KEY_PREFIX + "d", D);
+		file.addInteger(Controls.KEY_PREFIX + "up", up);
+		file.addInteger(Controls.KEY_PREFIX + "left", left);
+		file.addInteger(Controls.KEY_PREFIX + "down", down);
+		file.addInteger(Controls.KEY_PREFIX + "right", right);
+		file.addInteger(Controls.MOUSE_PREFIX + "left", leftMouseButton);
+		file.addInteger(Controls.MOUSE_PREFIX + "right", rightMouseButton);
 		
+		file.saveFile(T3tris.FILE_PATH, "controls.dat");
 	}
 	
 	private static void updateArrays() {
