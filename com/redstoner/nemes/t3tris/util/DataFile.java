@@ -27,15 +27,15 @@ public class DataFile {
 	}
 	
 	private boolean loadFile(String path, String name, DataFile defaultFile) {
-		File f = new File(path);
+		File f = new File(path + "/" + name);
 		if (!f.exists()) {
-			if (!(f.mkdirs() && defaultFile.saveFile(path, name))) {
+			if (!defaultFile.saveFile(path, name)) {
 				return false;
 			}
 		}
 		ArrayList<String> data;
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(new File(path + "/" + name)));
+			BufferedReader reader = new BufferedReader(new FileReader(f));
 			data = new ArrayList<String>();
 			String buffer;
 			while ((buffer = reader.readLine()) != null) {
@@ -64,14 +64,15 @@ public class DataFile {
 	}
 	
 	public boolean saveFile(String path, String name) {
-		File f = new File(path);
-		if (!f.exists()) {
-			if (!f.mkdirs()) {
+		File f = new File(path + "/" + name);
+		File dir = new File(path);
+		if (!dir.exists()) {
+			if (!dir.mkdirs()) {
 				return false;
 			}
 		}
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(new File(path + "/" + name)));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(f));
 			Set<String> set = map.keySet();
 			Iterator<String> i = set.iterator();
 			while (i.hasNext()) {
