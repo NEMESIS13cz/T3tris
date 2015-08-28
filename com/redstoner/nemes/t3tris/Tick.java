@@ -32,7 +32,7 @@ public class Tick extends Thread {
 		long next_tick = System.currentTimeMillis();
 		long tick_time = 1000 / Options.tickrateLimit;
 		GameState state;
-
+		
 		try {
 			Options.load();
 			Controls.load();
@@ -46,10 +46,6 @@ public class Tick extends Thread {
 			while (instance.getCurrentGameState() == GameState.STARTING) {
 				sleep(1);
 			}
-			grid.setBlock(new NormalBlock((Color) Color.RED), 6, 0, 7);
-			grid.setBlock(new NormalBlock((Color) Color.BLUE), 7, 0, 7);
-			grid.setBlock(new NormalBlock((Color) Color.GREEN), 6, 0, 6);
-			grid.setBlock(new NormalBlock((Color) Color.WHITE), 7, 0, 6);
 			while ((state = instance.getCurrentGameState()) != GameState.CLOSING) {
 				if (next_tick < System.currentTimeMillis()) {
 					long tick_start_time = System.currentTimeMillis();

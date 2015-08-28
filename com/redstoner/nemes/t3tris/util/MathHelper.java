@@ -1,4 +1,4 @@
-package com.redstoner.nemes.t3tris.menu;
+package com.redstoner.nemes.t3tris.util;
 
 public class MathHelper {
 

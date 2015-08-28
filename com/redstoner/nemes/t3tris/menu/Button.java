@@ -15,4 +15,14 @@ public class Button implements IDrawable, ITickable {
 		this.y2 = y2;
 		menu = m;
 	}
+
+	@Override
+	public void update(int x, int y, int w, int h) {
+		
+	}
+
+	@Override
+	public void render(int width, int height) {
+		
+	}
 }

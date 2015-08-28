@@ -6,6 +6,7 @@ import org.lwjgl.opengl.GL11;
 import com.redstoner.nemes.t3tris.Render;
 import com.redstoner.nemes.t3tris.gfx.FontMap;
 import com.redstoner.nemes.t3tris.util.Controls;
+import com.redstoner.nemes.t3tris.util.MathHelper;
 import com.redstoner.nemes.t3tris.util.MouseHandler;
 import com.redstoner.nemes.t3tris.util.Options;
 
