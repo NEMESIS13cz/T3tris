@@ -17,14 +17,23 @@ public class KeyHandler {
 	}
 	
 	public static boolean down(int key) {
+		if (keyMap.get(key) == null) {
+			return false;
+		}
 		return keyMap.get(key);
 	}
 	
 	public static boolean pressed(int key) {
+		if (keyMapOld.get(key) == null || keyMap.get(key) == null) {
+			return false;
+		}
 		return keyMap.get(key) && !keyMapOld.get(key);
 	}
 	
 	public static boolean released(int key) {
+		if (keyMapOld.get(key) == null || keyMap.get(key) == null) {
+			return false;
+		}
 		return !keyMap.get(key) && keyMapOld.get(key);
 	}
 	
