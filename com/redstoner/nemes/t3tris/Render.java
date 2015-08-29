@@ -157,8 +157,8 @@ public class Render extends Thread {
 	}
 	
 	public void renderMenu() {
-		int w = 16;
-		int h = 9;
+		int w = Display.getWidth();
+		int h = Display.getHeight();
 		
 		start2D(w, h);
 		disableTextures();
