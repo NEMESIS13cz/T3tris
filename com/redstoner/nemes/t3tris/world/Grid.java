@@ -3,8 +3,11 @@ package com.redstoner.nemes.t3tris.world;
 import java.util.ArrayList;
 import java.util.Random;
 
+import org.lwjgl.util.Color;
+
 import com.redstoner.nemes.t3tris.util.ScheduledUpdate;
 import com.redstoner.nemes.t3tris.world.blocks.AirBlock;
+import com.redstoner.nemes.t3tris.world.blocks.NormalBlock;
 
 public class Grid {
 
@@ -65,5 +68,23 @@ public class Grid {
 				i--;
 			}
 		}
+	}
+	
+	public static Block generateBlock(Random rand) {
+		return new NormalBlock(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)));
+	}
+	
+	public boolean isLayerEmpty(int y) {
+		if (y < 0 || y > Grid.GRID_HEIGHT - 1) {
+			return false;
+		}
+		for (int x = 0; x < Grid.GRID_WIDTH; x++) {
+			for (int z = 0; z < Grid.GRID_DEPTH; z++) {
+				if (!(grid[x][y][z] instanceof AirBlock)) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }

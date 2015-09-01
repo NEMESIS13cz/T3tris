@@ -3,8 +3,8 @@ package com.redstoner.nemes.t3tris;
 import java.util.Random;
 
 import org.lwjgl.opengl.Display;
-import org.lwjgl.util.Color;
 
+import com.redstoner.nemes.t3tris.gameplay.ShapeGenerator;
 import com.redstoner.nemes.t3tris.util.Controls;
 import com.redstoner.nemes.t3tris.util.DataException;
 import com.redstoner.nemes.t3tris.util.GameState;
@@ -14,7 +14,6 @@ import com.redstoner.nemes.t3tris.util.Options;
 import com.redstoner.nemes.t3tris.world.Block;
 import com.redstoner.nemes.t3tris.world.Grid;
 import com.redstoner.nemes.t3tris.world.blocks.AirBlock;
-import com.redstoner.nemes.t3tris.world.blocks.NormalBlock;
 
 public class Tick extends Thread {
 
@@ -100,9 +99,8 @@ public class Tick extends Thread {
 		if (KeyHandler.pressed(Controls.getD()) || KeyHandler.pressed(Controls.getRight())) {
 			shiftBlocksPosX();
 		}
-		if (KeyHandler.pressed(Controls.getSpace())) {
-			grid.setBlock(new NormalBlock(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255))), 7, 31, 7);
-			grid.scheduleUpdate(7, 31, 7, grid, rand, 0);
+		if (KeyHandler.pressed(Controls.getSpace()) && grid.isLayerEmpty(Grid.GRID_HEIGHT - 1) && grid.isLayerEmpty(Grid.GRID_HEIGHT - 2)) {
+			ShapeGenerator.getRandomShape(rand).apply(grid, rand);
 		}
 	}
 	
