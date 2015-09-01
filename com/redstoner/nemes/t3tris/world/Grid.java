@@ -8,7 +8,11 @@ import com.redstoner.nemes.t3tris.world.blocks.AirBlock;
 
 public class Grid {
 
-	private Block[][][] grid = new Block[16][32][16];
+	public static final int GRID_WIDTH = 16;
+	public static final int GRID_HEIGHT = 32;
+	public static final int GRID_DEPTH = 16;
+	
+	private Block[][][] grid = new Block[GRID_WIDTH][32][16];
 	private ArrayList<ScheduledUpdate> scheduler = new ArrayList<ScheduledUpdate>();
 	
 	public Grid() {
@@ -22,7 +26,7 @@ public class Grid {
 	}
 	
 	public Block getBlock(int x, int y, int z) {
-		if (x > 15 || x < 0 || y > 31 || y < 0 || z > 15 || z < 0) {
+		if (x > GRID_WIDTH - 1 || x < 0 || y > GRID_HEIGHT - 1 || y < 0 || z > GRID_DEPTH - 1 || z < 0) {
 			return null;
 		}
 		
@@ -30,7 +34,7 @@ public class Grid {
 	}
 	
 	public boolean setBlock(Block block, int x, int y, int z) {
-		if (x > 15 || x < 0 || y > 31 || y < 0 || z > 15 || z < 0) {
+		if (x > GRID_WIDTH - 1 || x < 0 || y > GRID_HEIGHT - 1 || y < 0 || z > GRID_DEPTH - 1 || z < 0) {
 			return false;
 		}
 		
@@ -39,7 +43,7 @@ public class Grid {
 	}
 	
 	public boolean canSetBlock(int x, int y, int z) {
-		if (x > 15 || x < 0 || y > 31 || y < 0 || z > 15 || z < 0) {
+		if (x > GRID_WIDTH - 1 || x < 0 || y > GRID_HEIGHT - 1 || y < 0 || z > GRID_DEPTH - 1 || z < 0) {
 			return false;
 		}
 		return true;

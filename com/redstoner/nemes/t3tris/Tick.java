@@ -107,9 +107,9 @@ public class Tick extends Thread {
 	}
 	
 	private void shiftBlocksNegX() {
-		for (int x = 0; x < 16; x++) {
-			for (int z = 0; z < 16; z++) {
-				for (int y = 0; y < 32; y++) {
+		for (int x = 0; x < Grid.GRID_WIDTH; x++) {
+			for (int z = 0; z < Grid.GRID_DEPTH; z++) {
+				for (int y = 0; y < Grid.GRID_HEIGHT; y++) {
 					Block b = grid.getBlock(x, y, z);
 					if (b instanceof AirBlock) {
 						continue;
@@ -125,9 +125,9 @@ public class Tick extends Thread {
 	}
 	
 	private void shiftBlocksPosX() {
-		for (int x = 15; x > -1; x--) {
-			for (int z = 0; z < 16; z++) {
-				for (int y = 0; y < 32; y++) {
+		for (int x = Grid.GRID_WIDTH - 1; x > -1; x--) {
+			for (int z = 0; z < Grid.GRID_DEPTH; z++) {
+				for (int y = 0; y < Grid.GRID_HEIGHT; y++) {
 					Block b = grid.getBlock(x, y, z);
 					if (b instanceof AirBlock) {
 						continue;
@@ -143,9 +143,9 @@ public class Tick extends Thread {
 	}
 	
 	private void shiftBlocksNegZ() {
-		for (int x = 0; x < 16; x++) {
-			for (int z = 0; z < 16; z++) {
-				for (int y = 0; y < 32; y++) {
+		for (int x = 0; x < Grid.GRID_WIDTH; x++) {
+			for (int z = 0; z < Grid.GRID_DEPTH; z++) {
+				for (int y = 0; y < Grid.GRID_HEIGHT; y++) {
 					Block b = grid.getBlock(x, y, z);
 					if (b instanceof AirBlock) {
 						continue;
@@ -161,9 +161,9 @@ public class Tick extends Thread {
 	}
 	
 	private void shiftBlocksPosZ() {
-		for (int x = 0; x < 16; x++) {
-			for (int z = 15; z > -1; z--) {
-				for (int y = 0; y < 32; y++) {
+		for (int x = 0; x < Grid.GRID_WIDTH; x++) {
+			for (int z = Grid.GRID_DEPTH - 1; z > -1; z--) {
+				for (int y = 0; y < Grid.GRID_HEIGHT; y++) {
 					Block b = grid.getBlock(x, y, z);
 					if (b instanceof AirBlock) {
 						continue;

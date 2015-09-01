@@ -189,9 +189,9 @@ public class Render extends Thread {
 		GL11.glRotatef(45, 0, 1, 0);
 		disableTextures();
 		
-		for (int x = 0; x < 16; x++) {
-			for (int y = 0; y < 32; y++) {
-				for (int z = 0; z < 16; z++) {
+		for (int x = 0; x < Grid.GRID_WIDTH; x++) {
+			for (int y = 0; y < Grid.GRID_HEIGHT; y++) {
+				for (int z = 0; z < Grid.GRID_DEPTH; z++) {
 					grid.getBlock(x, y, z).render(grid, this, x, y, z, rand);
 				}
 			}
