@@ -64,6 +64,7 @@ public class Render extends Thread {
 		 GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_NICEST);
 		 GL11.glEnable(GL11.GL_CULL_FACE);
 		 GL11.glCullFace(GL11.GL_BACK);
+		 reInitializeOpenGL();
 	}
 	
 	public void reInitializeOpenGL() {

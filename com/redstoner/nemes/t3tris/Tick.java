@@ -82,6 +82,8 @@ public class Tick extends Thread {
 		Controls.save();
 	}
 	
+	private int shapeTimer = Integer.MAX_VALUE;
+	
 	public void tickGame() {
 		grid.updateScheduler();
 		if (KeyHandler.pressed(Controls.getEsc())) {
@@ -99,9 +101,11 @@ public class Tick extends Thread {
 		if (KeyHandler.pressed(Controls.getD()) || KeyHandler.pressed(Controls.getRight())) {
 			shiftBlocksPosX();
 		}
-		if (KeyHandler.pressed(Controls.getSpace()) && grid.isLayerEmpty(Grid.GRID_HEIGHT - 1) && grid.isLayerEmpty(Grid.GRID_HEIGHT - 2)) {
+		if (shapeTimer > (Grid.GRID_HEIGHT - 1) * 20 || (KeyHandler.pressed(Controls.getSpace()) && grid.isLayerEmpty(Grid.GRID_HEIGHT - 1) && grid.isLayerEmpty(Grid.GRID_HEIGHT - 2))) {
 			ShapeGenerator.getRandomShape(rand).apply(grid, rand);
+			shapeTimer = 0;
 		}
+		shapeTimer++;
 	}
 	
 	private void shiftBlocksNegX() {
