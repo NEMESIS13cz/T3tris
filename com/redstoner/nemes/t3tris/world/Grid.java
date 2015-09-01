@@ -12,7 +12,7 @@ public class Grid {
 	public static final int GRID_HEIGHT = 32;
 	public static final int GRID_DEPTH = 16;
 	
-	private Block[][][] grid = new Block[GRID_WIDTH][32][16];
+	private Block[][][] grid = new Block[GRID_WIDTH][GRID_HEIGHT][GRID_DEPTH];
 	private ArrayList<ScheduledUpdate> scheduler = new ArrayList<ScheduledUpdate>();
 	
 	public Grid() {
