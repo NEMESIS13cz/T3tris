@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.redstoner.nemes.t3tris.gfx.FontMap;
 import com.redstoner.nemes.t3tris.util.EnumKeyBind;
 import com.redstoner.nemes.t3tris.util.Options;
+import com.redstoner.nemes.t3tris.util.Constants;
 
 public class OptionsMenu implements IMenu {
 
@@ -32,7 +33,7 @@ public class OptionsMenu implements IMenu {
 			b.render(w, h);
 		}
 		int fps = Options.framerateLimit;
-		FontMap.drawString(0.70 * w, 0.25 * h, h / 80.0f, fps == Integer.MAX_VALUE ? "Unlimited" : String.valueOf(fps), false);
+		FontMap.drawString(0.70 * w, 0.25 * h, h / 80.0f, fps == Integer.MAX_VALUE ? "Unlimited" : String.valueOf(fps), Constants.BUTTON_TEXT_COLOR, false);
 	}
 	
 	public void update(int x, int y, int w, int h) {

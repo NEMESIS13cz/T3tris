@@ -7,6 +7,7 @@ import com.redstoner.nemes.t3tris.T3tris;
 import com.redstoner.nemes.t3tris.gfx.FontMap;
 import com.redstoner.nemes.t3tris.util.Controls;
 import com.redstoner.nemes.t3tris.util.MouseHandler;
+import com.redstoner.nemes.t3tris.util.Constants;
 
 public class BackButton extends Button {
 
@@ -22,7 +23,7 @@ public class BackButton extends Button {
 		
 		Render.disableTextures();
 		GL11.glBegin(GL11.GL_QUADS);
-		GL11.glColor4f(0.5f, 0.5f, 0.5f, 0.6f);
+		Constants.BUTTON_COLOR.bind();
 		GL11.glVertex2f(x_, y2_);
 		GL11.glVertex2f(x2_, y2_);
 		GL11.glVertex2f(x2_, y_);
@@ -32,7 +33,7 @@ public class BackButton extends Button {
 
 		double button_h = y2_ - y_;
 		double scale = button_h / 10;
-		FontMap.drawString(x_ + (x2_ - x_) / 2, y_ + (button_h - scale * 8) / 2, scale, "Back", 0xF0F0F0, true);
+		FontMap.drawString(x_ + (x2_ - x_) / 2, y_ + (button_h - scale * 8) / 2, scale, "Back", Constants.BUTTON_TEXT_COLOR, true);
 	}
 	
 	public void update(int x, int y, int w, int h) {

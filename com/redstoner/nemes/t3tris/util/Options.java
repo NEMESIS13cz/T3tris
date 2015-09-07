@@ -1,9 +1,9 @@
 package com.redstoner.nemes.t3tris.util;
 
-import com.redstoner.nemes.t3tris.T3tris;
-
 public class Options {
 
+	public static final int DEFAULT_FRAMERATE_LIMIT = 60;
+	
 	// non-configurable options
 	public static final float zNear = 0.002f;
 	public static final float zFar = 200.0f;
@@ -14,18 +14,18 @@ public class Options {
 	public static final int startHeight = 450;
 	
 	// configurable options
-	public static int framerateLimit = 60;
+	public static int framerateLimit = DEFAULT_FRAMERATE_LIMIT;
 	
 	public static void load() throws DataException {
 		DataFile defaultFile = new DataFile();
 		defaultFile.addInteger("framerate_limit", framerateLimit);
-		DataFile file = new DataFile(T3tris.FILE_PATH, "options.dat", defaultFile);
+		DataFile file = new DataFile(Constants.FILE_PATH, "options.dat", defaultFile);
 		framerateLimit = file.getInteger("framerate_limit");
 	}
 	
 	public static void save() {
 		DataFile file = new DataFile();
 		file.addInteger("framerate_limit", framerateLimit);
-		file.saveFile(T3tris.FILE_PATH, "options.dat");
+		file.saveFile(Constants.FILE_PATH, "options.dat");
 	}
 }

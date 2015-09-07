@@ -2,8 +2,6 @@ package com.redstoner.nemes.t3tris.util;
 
 import org.lwjgl.input.Keyboard;
 
-import com.redstoner.nemes.t3tris.T3tris;
-
 public class Controls {
 
 	private static final String KEY_PREFIX = "key_";
@@ -159,7 +157,7 @@ public class Controls {
 		def.addInteger(Controls.KEY_PREFIX + "right", right);
 		def.addInteger(Controls.MOUSE_PREFIX + "left", leftMouseButton);
 		def.addInteger(Controls.MOUSE_PREFIX + "right", rightMouseButton);
-		DataFile file = new DataFile(T3tris.FILE_PATH, "controls.dat", def);
+		DataFile file = new DataFile(Constants.FILE_PATH, "controls.dat", def);
 		esc = file.getInteger(Controls.KEY_PREFIX + "escape");
 		space = file.getInteger(Controls.KEY_PREFIX + "space");
 		W = file.getInteger(Controls.KEY_PREFIX + "w");
@@ -191,7 +189,7 @@ public class Controls {
 		file.addInteger(Controls.MOUSE_PREFIX + "left", leftMouseButton);
 		file.addInteger(Controls.MOUSE_PREFIX + "right", rightMouseButton);
 		
-		file.saveFile(T3tris.FILE_PATH, "controls.dat");
+		file.saveFile(Constants.FILE_PATH, "controls.dat");
 	}
 	
 	private static void updateArrays() {
