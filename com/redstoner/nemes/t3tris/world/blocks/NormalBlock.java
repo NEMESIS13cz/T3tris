@@ -6,6 +6,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.Color;
 
 import com.redstoner.nemes.t3tris.Render;
+import com.redstoner.nemes.t3tris.util.Constants;
 import com.redstoner.nemes.t3tris.world.Block;
 import com.redstoner.nemes.t3tris.world.Grid;
 
@@ -53,7 +54,7 @@ public class NormalBlock extends Block {
 		if (b instanceof AirBlock) {
 			g.setBlock(this, x, y - 1, z);
 			g.setBlock(new AirBlock(null), x, y, z);
-			g.scheduleUpdate(x, y - 1, z, g, rand, 20);
+			g.scheduleUpdate(x, y - 1, z, g, rand, Constants.FALL_TIME);
 		}
 	}
 }
