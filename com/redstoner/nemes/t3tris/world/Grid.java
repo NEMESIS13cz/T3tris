@@ -87,4 +87,39 @@ public class Grid {
 		}
 		return true;
 	}
+	
+	public boolean isLayerFull(int y) {
+		if (y < 0 || y > Grid.GRID_HEIGHT - 1) {
+			return false;
+		}
+		for (int x = 0; x < Grid.GRID_WIDTH; x++) {
+			for (int z = 0; z < Grid.GRID_DEPTH; z++) {
+				if (grid[x][y][z] instanceof AirBlock) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	public void deleteLayer(int y) {
+		if (y < 0 || y > Grid.GRID_HEIGHT - 1) {
+			return;
+		}
+		for (int x = 0; x < Grid.GRID_WIDTH; x++) {
+			for (int z = 0; z < Grid.GRID_DEPTH; z++) {
+				setBlock(null, x, y, z);
+			}
+		}
+	}
+	
+	public void updateAll(Grid g, Random rand, int time) {
+		for (int x = 0; x < Grid.GRID_WIDTH; x++) {
+			for (int z = 0; z < Grid.GRID_DEPTH; z++) {
+				for (int y = 0; y < Grid.GRID_HEIGHT; y++) {
+					scheduleUpdate(x, y, z, g, rand, time);
+				}
+			}
+		}
+	}
 }

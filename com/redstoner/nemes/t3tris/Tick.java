@@ -106,6 +106,7 @@ public class Tick extends Thread {
 			shapeTimer = 0;
 		}
 		shapeTimer++;
+		checkForFullLayer();
 	}
 	
 	private void shiftBlocksNegX() {
@@ -177,6 +178,13 @@ public class Tick extends Thread {
 					}
 				}
 			}
+		}
+	}
+	
+	private void checkForFullLayer() {
+		if (grid.isLayerFull(0)) {
+			grid.deleteLayer(0);
+			grid.updateAll(grid, rand, 20);
 		}
 	}
 	

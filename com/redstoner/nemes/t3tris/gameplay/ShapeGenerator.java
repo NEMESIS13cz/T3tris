@@ -17,5 +17,4 @@ public class ShapeGenerator {
 		
 		return s;
 	}
-	
 }
